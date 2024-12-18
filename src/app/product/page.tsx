@@ -1,9 +1,14 @@
-'use client';
+"use client";
 
+import Image from 'next/image';
+import Link from 'next/link';
 import { useState } from 'react';
 import { BsFuelPumpDiesel } from 'react-icons/bs';
+import { FaArrowLeft } from 'react-icons/fa';
 import { IoPeople } from 'react-icons/io5';
 import { RiSteering2Line } from 'react-icons/ri';
+import Review from './Review';
+import { IoIosHeartEmpty } from 'react-icons/io';
 
 const ProductDetail = () => {
   const [maxPrice, setMaxPrice] = useState(100);
@@ -13,174 +18,364 @@ const ProductDetail = () => {
   };
 
   return (
-    <div className="flex flex-col">
-      {/* Product Details Section */}
-      <section className="max-w-7xl mx-auto p-8 flex gap-12">
-        {/* Left Side: Car Image and Overview */}
-        <div
-          className="bg-blue-500 rounded-lg text-white p-6 overflow-hidden w-[492px] h-[360px] pl-5"
-        >
-          {/* Background Text */}
-          <h2 className="text-2xl font-bold mb-2">Sports car with the best <br /> design and acceleration</h2>
-          <p className="text-sm mt-5">
+    <div className="w-full flex sm:flex-col md:flex-row bg-gray-200 gap-4 justify-center">
+      {/* Sidebar */}
+      <div className="flex justify-center">
+        <div className="hidden md:block md:w-[360px] md:h-[2016px] p-5 bg-white border-r border-gray-300">
+          <button className="flex items-center justify-center">
+            <Link href="/">
+              <FaArrowLeft className="text-gray-500 w-4 h-4 mr-4" />
+            </Link>
+            Press me to go back
+          </button>
+          <br />
+          <h3 className="text-sm text-gray-500 mb-2">Type</h3>
+          <br />
+          <ul className="space-y-3">
+            <li>
+              <input type="checkbox" id="sport" className="mr-2" />
+              <label htmlFor="sport">Sport (10)</label>
+            </li>
+            <li>
+              <input type="checkbox" id="suv" className="mr-2" />
+              <label htmlFor="suv">SUV (12)</label>
+            </li>
+            <li>
+              <input type="checkbox" id="mpv" className="mr-2" />
+              <label htmlFor="mpv">MPV (16)</label>
+            </li>
+            <li>
+              <input type="checkbox" id="sedan" className="mr-2" />
+              <label htmlFor="sedan">Sedan (20)</label>
+            </li>
+            <li>
+              <input type="checkbox" id="coupe" className="mr-2" />
+              <label htmlFor="coupe">Coupe (14)</label>
+            </li>
+            <li>
+              <input type="checkbox" id="hatchback" className="mr-2" />
+              <label htmlFor="hatchback">Hatchback (18)</label>
+            </li>
+          </ul>
+          <h3 className="text-sm text-gray-500 mt-6">Capacity</h3>
+          <br />
+          <ul className="space-y-3">
+            <li>
+              <input type="checkbox" id="2person" className="mr-2" />
+              <label htmlFor="2person">2 Person (10)</label>
+            </li>
+            <li>
+              <input type="checkbox" id="4person" className="mr-2" />
+              <label htmlFor="4person">4 Person (14)</label>
+            </li>
+            <li>
+              <input type="checkbox" id="6person" className="mr-2" />
+              <label htmlFor="6person">6 Person (16)</label>
+            </li>
+            <li>
+              <input type="checkbox" id="8ormore" className="mr-2" />
+              <label htmlFor="8ormore">8 or More (16)</label>
+            </li>
+          </ul>
+          <br />
+          <h3 className="text-sm text-gray-500 mt-6">Price</h3>
+          <br />
+          <div>
+            <label>Max: ${maxPrice.toFixed(2)}</label>
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value={maxPrice}
+              onChange={handlePriceChange}
+              className="w-full mt-2"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Right Section */}
+      <div className='flex-row sm:justify-center  md:justify-evenly'>
+      <div className='flex sm:flex-col md:flex-row sm:justify-center sm:items-center sm:p-4 md:justify-evenly gap-8'>
+      <div className='flex-col'>
+        {/* Car Image Section */}
+        <div className="bg-blue-500 rounded-lg text-white p-6 overflow-hidden sm:w-[327px] sm:h-[232px] md:w-[492px] md:h-[360px] pl-5 md:mt-4">
+          <h2 className="sm:text-[18px] md:text-[30px] font-bold mb-2">
+            Sports car with the best <br /> design and acceleration
+          </h2>
+          <p className="sm:text-[12px] md:text-[18px] md:mt-3">
             Safety and comfort while driving a <br />
             futuristic and elegant sports car
           </p>
-          {/* Car Image */}
-          <img
-            src="./image 7.png"
+          <Image
+            src="/image 8.png"
             alt="Luxury Car"
-            className="w-[460px] h-[116px] mt-20"
+            width={460}
+            height={140}
+            className="sm:mt-4 md:mt-8"
           />
         </div>
 
-        {/* Right Side: Car Info and Pricing */}
-        <div className="w-[60%]">
-          <h2 className="text-3xl font-bold">Nissan GT - R</h2>
-          <p className="mt-2 text-lg text-gray-500">Sports car with the best design and acceleration</p>
-          <div className="mt-4 flex items-center gap-3">
-            <span className="text-yellow-500">⭐⭐⭐⭐☆</span> {/* Rating */}
-            <p className="text-gray-600">(4.5 stars, 264 reviews)</p>
+        {/* Car Additional Images */}
+        <div className="flex flex-row gap-6">
+          <div className="bg-blue-500 rounded-lg text-white md:w-[148px] md:h-[124px] mt-4">
+            <Image
+              src="/image 8.png"
+              alt="Luxury Car"
+              width={140}
+              height={36}
+              className="sm:pt-7 md:pt-10 md:ml-1"
+            />
           </div>
+          <div>
+            <Image
+              src="/view 2.png"
+              alt="Luxury Car"
+              width={148}
+              height={124}
+              className="pt-4"
+            />
+          </div>
+          <div>
+            <Image
+              src="/view 3.png"
+              alt="Luxury Car"
+              width={148}
+              height={124}
+              className="pt-4"
+            />
+          </div>
+        </div>
+        </div>
 
-          <div className="mt-6">
-            <h3 className="font-semibold">Description</h3>
-            <p className="text-gray-700 mt-2">
-              The Nissan GT-R is an iconic sports car, renowned for its powerful engine, agile handling, and advanced technology. It's been designed to deliver an exhilarating driving experience on both track and street.
+        {/* Car Details Section */}
+        <div className="sm:w-[327px] sm:h-[318px] md:w-[492px] md:h-[508px] sm:p-2 bg-white mt-4 rounded-md md:p-4">
+          <h2 className="sm:text-xl md:text-3xl font-bold">Nissan GT - R</h2>
+          <div className="sm:text-[12px] md:mt-4 flex items-center gap-3">
+            <span className="text-yellow-500">⭐⭐⭐⭐☆</span>
+            <p className="text-gray-600 sm:text-[10px] md:text-[14px]">440+ Reviewer</p>
+          </div>
+          <div className="sm:mt-4 md:mt-6">
+            <p className="text-gray-600 sm:text-[14px] md:text-[20px] mt-2 sm:leading-7 md:leading-9">
+              NISMO has become the embodiment of Nissan's outstanding
+              performance, inspired by the most unforgiving proving ground, the
+              "race track".
             </p>
           </div>
-
-          <div className="mt-6">
-            <h3 className="font-semibold">Details</h3>
-            <ul className="text-gray-600 space-y-2 mt-2 flex gap-4">
-              <li><BsFuelPumpDiesel size={24} /> 80L Fuel Tank</li>
-              <li><RiSteering2Line size={24} /> Manual Transmission</li>
-              <li><IoPeople size={24} /> 2 People</li>
-            </ul>
+          <div className="grid grid-cols-4 md:mt-8 sm:text-[12px] space-y-4">
+            <h2 className="mt-4 text-gray-400">Type Car</h2>
+            <h2>Sport</h2>
+            <h2 className="text-gray-400">Capacity</h2>
+            <h2>2 Persons</h2>
+            <h2 className="text-gray-400">Steering</h2>
+            <h2>Manual</h2>
+            <h2 className="text-gray-400">Gasoline</h2>
+            <h2>70L</h2>
           </div>
-
-          <div className="mt-6 flex justify-between items-center">
-            <h2 className="text-2xl font-bold text-blue-500">$80.00/day</h2>
-            <button className="bg-blue-500 text-white px-4 py-2 rounded-md mr-8">Rent Now</button>
+          <div className="sm:mt-7 md:mt-14 flex justify-between items-center">
+            <div className="flex flex-row gap-2">
+              <h2 className="text-3xl font-bold text-black">$80.00/</h2>
+              <p className="text-2xl font-light text-gray-500">day</p>
+            </div>
+            <Link href="/billing">
+            <button className="bg-blue-500 text-white px-4 py-2 rounded-md mr-8">
+              Rent Now
+            </button>
+            </Link>
           </div>
         </div>
-      </section>
-
-      {/* Reviews Section */}
-      <section className="max-w-7xl mx-auto p-8 mt-12 bg-gray-50 rounded-lg">
-        <h3 className="text-2xl font-bold">Reviews</h3>
-        <div className="mt-6 space-y-4">
-          <div className="flex justify-between items-center">
-            <div className="flex items-center gap-3">
-              <span className="font-semibold">Alex Stanton</span>
-              <span className="text-gray-500 text-sm">3 days ago</span>
-            </div>
-            <div className="text-yellow-500">⭐⭐⭐⭐☆</div>
-          </div>
-          <p className="text-gray-600 mt-2">
-            The Nissan GT-R is an absolute beast! The handling is superb, and the performance is unmatched. It truly offers an incredible driving experience.
-          </p>
         </div>
-
-        <div className="mt-6 space-y-4">
-          <div className="flex justify-between items-center">
-            <div className="flex items-center gap-3">
-              <span className="font-semibold">Regular Class</span>
-              <span className="text-gray-500 text-sm">1 week ago</span>
-            </div>
-            <div className="text-yellow-500">⭐⭐⭐⭐☆</div>
-          </div>
-          <p className="text-gray-600 mt-2">
-            A great car for a weekend getaway. Comfortable, fast, and fun to drive! Highly recommend it.
-          </p>
-        </div>
-      </section>
-
-      {/* Similar Cars Section */}
-      <section className="max-w-7xl mx-auto p-8 mt-12">
-        <h3 className="text-2xl font-bold">Similar Cars</h3>
-        <div className="grid grid-cols-3 gap-8 mt-6">
-          {/* Car Card 1 */}
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <img src="./car.png" alt="Car" className="w-full h-auto" />
-            <p className="text-lg font-semibold mt-4">Koenigsegg</p>
-            <div className="flex items-center gap-3 text-gray-500">
-              <BsFuelPumpDiesel size={20} /> 90L | <RiSteering2Line size={20} /> Manual | <IoPeople size={20} /> 2 People
-            </div>
-            <div className="flex justify-between items-center mt-4">
-              <h4 className="font-bold text-blue-500 text-xl">$99.00/day</h4>
-              <button className="bg-blue-500 text-white px-4 py-2 rounded-md">Rent Now</button>
-            </div>
-          </div>
-
-          {/* Car Card 2 */}
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <img src="./car (2).png" alt="Car" className="w-full h-auto" />
-            <p className="text-lg font-semibold mt-4">Nissan GT - R</p>
-            <div className="flex items-center gap-3 text-gray-500">
-              <BsFuelPumpDiesel size={20} /> 80L | <RiSteering2Line size={20} /> Manual | <IoPeople size={20} /> 2 People
-            </div>
-            <div className="flex justify-between items-center mt-4">
-              <h4 className="font-bold text-blue-500 text-xl">$80.00/day</h4>
-              <button className="bg-blue-500 text-white px-4 py-2 rounded-md">Rent Now</button>
-            </div>
-          </div>
-
-          {/* Car Card 3 */}
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <img src="./car (3).png" alt="Car" className="w-full h-auto" />
-            <p className="text-lg font-semibold mt-4">Rolls-Royce</p>
-            <div className="flex items-center gap-3 text-gray-500">
-              <BsFuelPumpDiesel size={20} /> 70L | <RiSteering2Line size={20} /> Manual | <IoPeople size={20} /> 4 People
-            </div>
-            <div className="flex justify-between items-center mt-4">
-              <h4 className="font-bold text-blue-500 text-xl">$96.00/day</h4>
-              <button className="bg-blue-500 text-white px-4 py-2 rounded-md">Rent Now</button>
-            </div>
-          </div>
+     {/* Review Section Moved Here */}
+     <div className="justify-center p-2">
+          <Review />
         </div>
         <br />
-        <div className="grid grid-cols-3 gap-8 mt-6">
-          {/* Car Card 1 */}
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <img src="./car.png" alt="Car" className="w-full h-auto" />
-            <p className="text-lg font-semibold mt-4">Koenigsegg</p>
-            <div className="flex items-center gap-3 text-gray-500">
-              <BsFuelPumpDiesel size={20} /> 90L | <RiSteering2Line size={20} /> Manual | <IoPeople size={20} /> 2 People
+        <div className="flex sm:flex-col md:flex-row gap-6 sm:p-4 md:p-0 sm:justify-center md:justify-evenly">
+            {/* Car Listing Item 1 */}
+          <div className="bg-white h-[388px] w-[317px] rounded-md">
+          <div className="flex justify-between pr-7 pt-5">
+            <p className="ml-3 text-2xl font-bold">Koenigsegg</p>
+            <IoIosHeartEmpty size={24} />
             </div>
-            <div className="flex justify-between items-center mt-4">
-              <h4 className="font-bold text-blue-500 text-xl">$99.00/day</h4>
-              <button className="bg-blue-500 text-white px-4 py-2 rounded-md">Rent Now</button>
+            <p className="ml-3">Sport</p>
+            <Link href="/product">
+             <img
+              src="./car.png" alt="" className="pt-24 mt-8 pl-6"
+            />
+            </ Link>
+            <div className="flex mt-2 ml-4 gap-2 text-gray-400" >
+            <BsFuelPumpDiesel size={24}/>
+            <p>90L</p>
+
+            <RiSteering2Line size={24}/>
+            <p>Manual</p>
+
+            <IoPeople size={24} />
+            <p>2 People</p>
             </div>
+            <div className="p-4 flex justify-between">
+            <h1 className="font-bold text-blue-500 text-2xl pt-5">$79.99/day</h1>
+            <button className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4 mr-4">
+              Rent Now
+            </button>
+            </div>
+            </div>
+            {/* Car Listing Item 2 */}
+            
+ <div className="bg-white h-[388px] w-[317px] rounded-md">
+            <div className="flex justify-between pr-7 pt-5">
+            <p className="ml-3 text-2xl font-bold">Nisan - GTR</p>
+            <IoIosHeartEmpty size={24} />
+            </div>
+            <p className="ml-3">Sport</p>
+            <img
+              src="./car (1).png" alt="" className="pt-24 mt-8 pl-6"
+            />
+            <div className="flex mt-2 ml-4 gap-2 text-gray-400" >
+            <BsFuelPumpDiesel size={24}/>
+            <p>90L</p>
+
+            <RiSteering2Line size={24}/>
+            <p>Manual</p>
+
+            <IoPeople size={24} />
+            <p>2 People</p>
+            </div>
+            <div className="p-4 flex justify-between">
+            <h1 className="font-bold text-blue-500 text-2xl pt-5">$79.99/day</h1>
+            <button className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4 mr-4">
+              Rent Now
+            </button>
+            </div>
+            </div>  
+
+            {/* Car Listing Item 3 */}
+            
+<div className="bg-white h-[388px] w-[317px] rounded-md">
+            <div className="flex justify-between pr-7 pt-5">
+            <p className="ml-3 text-2xl font-bold">Rolls - Royce</p>
+            <IoIosHeartEmpty size={24} />
+            </div>
+            <p className="ml-3">Sedan</p>
+            <img
+              src="./car (2).png" alt="" className="pt-24 mt-8 pl-6"
+            />
+            <div className="flex mt-2 ml-4 gap-2 text-gray-400" >
+            <BsFuelPumpDiesel size={24}/>
+            <p>90L</p>
+
+            <RiSteering2Line size={24}/>
+            <p>Manual</p>
+
+            <IoPeople size={24} />
+            <p>2 People</p>
+            </div>
+            <div className="p-4 flex justify-between">
+            <h1 className="font-bold text-blue-500 text-2xl pt-5">$79.99/day</h1>
+            <button className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4 mr-4">
+              Rent Now
+            </button>
+            </div>
+            </div>
+
+          </div>
+          <br />
+
+          <div className="flex sm:flex-col md:flex-row gap-6 sm:p-4 md:p-0 sm:justify-center md:justify-evenly mb-4">
+            {/* Car Listing Item 1 */}
+          <div className="bg-white h-[388px] w-[317px] rounded-md">
+              <div className="flex justify-between pr-7 pt-5">
+              <p className="ml-3 text-2xl font-bold">Nisan - GTR</p>
+              <IoIosHeartEmpty size={24} />
+              </div>
+              <p className="ml-3">Sport</p>
+              <img
+                src="./car (3).png" alt="" className="pt-24 mt-8 pl-6"
+              />
+              <div className="flex mt-2 ml-4 gap-2 text-gray-400" >
+              <BsFuelPumpDiesel size={24}/>
+              <p>90L</p>
+  
+              <RiSteering2Line size={24}/>
+              <p>Manual</p>
+  
+              <IoPeople size={24} />
+              <p>2 People</p>
+              </div>
+              <div className="p-4 flex justify-between">
+              <h1 className="font-bold text-blue-500 text-2xl pt-5">$79.99/day</h1>
+              <button className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4 mr-4">
+                Rent Now
+              </button>
+              </div>
+              </div>
+            {/* Car Listing Item 2 */}
+            
+          <div className="bg-white h-[388px] w-[317px] rounded-md">
+           <div className="flex justify-between pr-7 pt-5">
+             <p className="ml-3 text-2xl font-bold">All New Rush</p>
+             <IoIosHeartEmpty size={24} />
+             </div>
+             <p className="ml-3">SUV</p>
+             <img
+               src="./car (4).png" alt="" className="pt-10 mt-10 pl-6"
+             />
+             <div className="flex mt-2 ml-4 gap-2 text-gray-400" >
+             <BsFuelPumpDiesel size={24}/>
+             <p>70L</p>
+ 
+             <RiSteering2Line size={24}/>
+             <p>Manual</p>
+ 
+             <IoPeople size={24} />
+             <p>6 People</p>
+             </div>
+             <div className="p-4 flex justify-between">
+             <h1 className="font-bold text-blue-500 text-2xl pt-5">$79.99/day</h1>
+             <button className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4 mr-4">
+               Rent Now
+             </button>
+             </div>
+             </div>
+
+            {/* Car Listing Item 3 */}
+            
+            <div className="bg-white h-[388px] w-[317px] rounded-md">
+            <div className="flex justify-between pr-7 pt-5">
+            <p className="ml-3 text-2xl font-bold">Car - V</p>
+            <IoIosHeartEmpty size={24} />
+            </div>
+            <p className="ml-3">SUV</p>
+            <img
+              src="./car (5).png" alt="" className="pt-10 mt-10 pl-6"
+            />
+            <div className="flex mt-2 ml-4 gap-2 text-gray-400" >
+            <BsFuelPumpDiesel size={24}/>
+            <p>80L</p>
+
+            <RiSteering2Line size={24}/>
+            <p>Manual</p>
+
+            <IoPeople size={24} />
+            <p>2 People</p>
+            </div>
+            <div className="p-4 flex justify-between">
+            <h1 className="font-bold text-blue-500 text-2xl pt-5">$79.99/day</h1>
+            <button className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4 mr-4">
+              Rent Now
+            </button>
+            </div>
+            
+            </div>
+            
+
           </div>
 
-          {/* Car Card 2 */}
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <img src="./car (2).png" alt="Car" className="w-full h-auto" />
-            <p className="text-lg font-semibold mt-4">Nissan GT - R</p>
-            <div className="flex items-center gap-3 text-gray-500">
-              <BsFuelPumpDiesel size={20} /> 80L | <RiSteering2Line size={20} /> Manual | <IoPeople size={20} /> 2 People
-            </div>
-            <div className="flex justify-between items-center mt-4">
-              <h4 className="font-bold text-blue-500 text-xl">$80.00/day</h4>
-              <button className="bg-blue-500 text-white px-4 py-2 rounded-md">Rent Now</button>
-            </div>
-          </div>
 
-          {/* Car Card 3 */}
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <img src="./car (3).png" alt="Car" className="w-full h-auto" />
-            <p className="text-lg font-semibold mt-4">Rolls-Royce</p>
-            <div className="flex items-center gap-3 text-gray-500">
-              <BsFuelPumpDiesel size={20} /> 70L | <RiSteering2Line size={20} /> Manual | <IoPeople size={20} /> 4 People
-            </div>
-            <div className="flex justify-between items-center mt-4">
-              <h4 className="font-bold text-blue-500 text-xl">$96.00/day</h4>
-              <button className="bg-blue-500 text-white px-4 py-2 rounded-md">Rent Now</button>
-            </div>
-          </div>
-        </div>
-      </section>
+        </div>  
+         
+        
+    
     </div>
   );
 };
